@@ -16,3 +16,7 @@
 ## run
 
 ```$ vagrant up```
+
+## check
+
+[http://192.168.33.10:8080/sample/](http://192.168.33.10:8080/sample/)
