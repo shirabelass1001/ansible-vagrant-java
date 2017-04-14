@@ -40,14 +40,19 @@ after
 ```$ vi main.yml```
 
 before
-> ```- name: symbolic link to war file
+> ```ー name: symbolic link to war file
   file: src=/var/www/tomcat/webapps/sample-1.0.war dest=/usr/share/tomcat/webapps/sample.war state=link force=yes```
 
 after
-> ```- name: symbolic link to war file
+> ```ー name: symbolic link to war file
   file: src=/var/www/tomcat/webapps/yourfilename.war dest=/usr/share/tomcat/webapps/sample.war state=link force=yes```
 
 ### 3. edit context.xml
+
+```$ cd /roles/tomcat/templates```
+
+```$ vi context.xml```
+
 before
 > ```<Context path="" docBase="sample" allowLinking="true" debug="0" reloadable="true" crossContext="true">```
 
