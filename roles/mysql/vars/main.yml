@@ -1,0 +1,9 @@
+---
+dbuser: aizu
+dbpass: aizu123
+remotehost: 127.0.0.1
+hosts:
+  - "localhost"
+  - "192.168.33.20"
+dbnames:
+  - sample
