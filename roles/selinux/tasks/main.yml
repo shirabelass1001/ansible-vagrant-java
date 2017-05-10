@@ -1,15 +1,24 @@
 ---
 # Download and install EPEL for Centos/RHEL version 6
 - name: Download EPEL Repo - Centos/RHEL 6
-  get_url: url=http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm dest=/tmp/epel-release-latest-6.noarch.rpm
+  get_url: url=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm dest=/tmp/epel-release-latest-6.noarch.rpm
   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
 
 - name: Install EPEL Repo - Centos/RHEL 6
   command: rpm -ivh /tmp/epel-release-latest-6.noarch.rpm creates=/etc/yum.repos.d/epel.repo
   when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
 
+# enabledは全て0にする
+- name: replace /tmp/test.conf
+  replace: dest=/etc/yum.repos.d/{{item}} regexp="enabled *= *1" replace="enabled=0"
+  with_items:
+    - epel.repo
+
 - name: Install ca-certificates
   yum: name=ca-certificates disablerepo=epel state=latest
 
 - name: Install libselinux-python
   yum: name=libselinux-python state=present
+
+- name: SELinuxのDisable設定
+  selinux: state=disabled

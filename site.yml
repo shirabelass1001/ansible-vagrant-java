@@ -2,10 +2,11 @@
 # This playbook deploys a simple standalone Tomcat 7 server.  and configure the mySql
 
 - hosts: tomcat-servers
+  connection: local
   remote_user: root
   become: yes
+  become_user: root
   become_method: sudo
-
   roles:
     - selinux
     - tomcat
